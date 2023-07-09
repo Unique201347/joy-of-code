@@ -1,17 +1,8 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
 	import { fade } from 'svelte/transition'
-	import { EyeIcon } from '@rgossiaux/svelte-heroicons/outline'
-	import { fetchJSON } from '$lib/site/posts'
 	import type { Post } from '$lib/types'
 
 	export let posts: Post[]
-
-	let views: Promise<Response>
-
-	onMount(async () => {
-		views = await fetchJSON('/api/views')
-	})
 </script>
 
 <section>
@@ -27,19 +18,6 @@
 			>
 				<a href="/{post.slug}">
 					<article class="card">
-						<span class="views">
-							<EyeIcon width="24" height="24" aria-hidden="true" />
-							<span>
-								{#if views}
-									{#await views}
-										⌛️
-									{:then views}
-										{views[post.slug].views}
-									{/await}
-								{/if}
-							</span>
-						</span>
-
 						<div class="details">
 							<span class="title">{post.title}</span>
 							<p class="description">{post.description}</p>
@@ -55,7 +33,8 @@
 
 <style>
 	section {
-		margin-top: var(--spacing-64);
+		margin-top: var(--spacing-32);
+		margin-bottom: var(--spacing-16);
 	}
 
 	.cards {
@@ -78,7 +57,7 @@
 	}
 
 	.card {
-		height: 480px;
+		height: 280px;
 		display: grid;
 		grid-template-rows: min-content;
 		padding: var(--spacing-16);
@@ -89,25 +68,11 @@
 		box-shadow: var(--shadow-sm);
 		transition: transform 0.2s ease-in-out, box-shadow 0.3s ease,
 			outline 0.1s ease;
-
-		/*
-      I assume this prevents the card from flickering on hover
-      by triggering hardware-accelerated rendering
-    */
 		transform: translateZ(0);
 	}
 
 	.card:hover {
-		transform: scale(1.02);
-		box-shadow: var(--shadow-md), 0 0 0 4px var(--clr-primary);
-	}
-
-	.card .views {
-		display: flex;
-		align-items: center;
-		gap: var(--spacing-4);
-		font-weight: 500;
-		color: var(--clr-card-txt);
+		box-shadow: var(--shadow-md), 0 0 0 2px whitesmoke;
 	}
 
 	.card .details {
@@ -116,7 +81,7 @@
 
 	.card .title {
 		font-family: var(font-sans);
-		font-size: var(--font-32);
+		font-size: var(--font-24);
 		font-weight: 700;
 		line-height: 48px;
 		text-transform: capitalize;
@@ -130,6 +95,7 @@
 
 	.card .description {
 		margin-top: var(--spacing-8);
+		font-size: var(--font-16);
 		color: var(--clr-card-txt);
 	}
 

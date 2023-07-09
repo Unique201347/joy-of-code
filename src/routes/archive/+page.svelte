@@ -13,20 +13,12 @@
 <Heading>Archive</Heading>
 
 <Posts posts={data.posts}>
-	<div class="container" slot="title">
-		<h3>Posts</h3>
-		<div>
-			<span class="results">{data.posts.length}</span> results
-		</div>
+	<div slot="title">
+		<span class="results">{data.posts.length}</span> results
 	</div>
 </Posts>
 
 <style>
-	.container {
-		display: flex;
-		justify-content: space-between;
-	}
-
 	.results {
 		font-weight: 700;
 	}

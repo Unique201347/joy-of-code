@@ -41,7 +41,6 @@
 							/>
 						</svg>
 
-						<span class="title">Categories</span>
 						<ul>
 							{#each Object.entries(config.categories) as [slug, category]}
 								<li>
@@ -96,15 +95,6 @@
 
 	.menu .arrow #outside {
 		fill: var(--clr-menu-border);
-	}
-
-	.menu .title {
-		display: block;
-		padding-bottom: var(--spacing-24);
-		font-size: var(--font-24);
-		font-weight: 700;
-		line-height: 32px;
-		border-bottom: 1px solid var(--clr-menu-border);
 	}
 
 	.menu a {

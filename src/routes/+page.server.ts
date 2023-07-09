@@ -4,7 +4,7 @@ import { error } from '@sveltejs/kit'
 export async function load({ fetch }) {
 	try {
 		const posts = await fetchJSON('/api/posts', fetch)
-		return { posts: posts.slice(0, 10) }
+		return { posts: posts.slice(0, 6) }
 	} catch (e) {
 		throw error(404, (e as Error).message)
 	}

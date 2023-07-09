@@ -8,6 +8,3 @@ declare namespace App {
 	// interface Session {}
 	// interface Stuff {}
 }
-
-// third party
-declare module 'lite-youtube-embed'
